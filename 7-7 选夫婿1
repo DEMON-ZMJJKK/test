@@ -1,0 +1,46 @@
+#include<stdio.h>
+struct men
+{
+    char name[20];
+    int h,w;
+}s[1000],t;
+int main()
+{
+    int n,i,j,a,b,c,d,z=1;
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        scanf("%s%d%d",s[i].name,&s[i].h,&s[i].w);
+    }
+    scanf("%d%d%d%d",&a,&b,&c,&d);
+    for(i=0;i<n-1;i++)
+    {
+        for(j=0;j<n-1-i;j++)
+        {
+            if(s[j].h>s[j+1].h)
+            {
+                t=s[j+1];
+                s[j+1]=s[j];
+                s[j]=t;
+          }
+            else if(s[j].h==s[j+1].h)
+            {
+                if(s[j].w>s[j+1].w)
+                {
+                t=s[j+1];
+                s[j+1]=s[j];
+                s[j]=t;
+                }
+          }
+        }
+    }
+    for(i=0;i<n;i++)
+    {
+        if(s[i].h>=a&&s[i].h<=b&&s[i].w>=c&&s[i].w<=d)
+        {
+            printf("%s %d %d\n",s[i].name,s[i].h,s[i].w);z=0;
+        }
+    }
+    if(z==1)printf("No\n");
+    return 0;
+}
