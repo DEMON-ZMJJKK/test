@@ -1,0 +1,33 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+struct team
+{
+    int ID,num;
+}a[100000],t;
+int main()
+{
+    int n,i,j;
+    scanf("%d",&n);
+    for(i=0;i<n;i++)
+    {
+        scanf("%d%d",&a[i].ID,&a[i].num);
+    }
+    for(i=0;i<n-1;i++)
+    {
+        for(j=0;j<n-1-i;j++)
+        {
+            if(a[j].num<a[j+1].num)
+            {
+                t=a[j+1];
+                a[j+1]=a[j];
+                a[j]=t;
+            }
+        }
+    }
+    for(i=0;i<n;i++)
+    {
+        printf("%d %d\n",a[i].ID,a[i].num);
+    }
+    return 0;
+}
