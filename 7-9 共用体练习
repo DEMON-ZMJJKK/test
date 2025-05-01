@@ -1,0 +1,53 @@
+#include<stdio.h>
+ 
+union data
+ 
+{
+ 
+    int a;
+ 
+    double b;
+ 
+    char c[20];
+ 
+}s[100000],t[100000];
+ 
+int main()
+ 
+{
+ 
+    int m,n,i,x;
+ 
+    scanf("%d%d",&n,&m);
+ 
+    for(i=0;i<n;i++)
+ 
+    {
+ 
+        scanf("%s",s[i].c);
+ 
+        if(s[i].c[0]=='I')scanf("%d",&t[i].a);
+ 
+        else if(s[i].c[0]=='D')scanf("%lf",&t[i].b);
+ 
+        else if(s[i].c[0]=='S')scanf("%s",t[i].c);
+ 
+    }
+ 
+    for(i=0;i<m;i++)
+ 
+    {
+ 
+        scanf("%d",&x);
+ 
+        if(s[x].c[0]=='I')printf("%d\n",t[x].a);
+ 
+        else if(s[x].c[0]=='D')printf("%.2lf\n",t[x].b);
+ 
+        else if(s[x].c[0]=='S')printf("%s\n",t[x].c);
+ 
+    }
+ 
+    return 0;
+ 
+}
