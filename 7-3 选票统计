@@ -1,0 +1,23 @@
+#include<stdio.h>
+struct condidate
+{
+    int a[1000];
+};
+int main()
+{
+    int m,n,i,c=0,max=0;
+    scanf("%d %d",&m,&n);
+    struct condidate b={0};
+    while(n--){
+        scanf("%d",&i);
+        b.a[i]++;
+    }
+    for(i=0;i<=m;i++){
+        if(b.a[i]>max){
+            max=b.a[i];
+            c=i;
+        }
+    }
+    printf("%d\n%d\n",c,max);
+    return 0;
+}
