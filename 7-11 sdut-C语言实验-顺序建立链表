@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// 定义链表节点结构体
+struct Node {
+    int data;
+    struct Node* next;
+};
+
+int main() {
+    int n, i; // n表示输入整数数量
+    struct Node* head, * p, * tail;
+
+    // 初始化头节点
+    head = (struct Node*)malloc(sizeof(struct Node));
+    head->next = NULL;
+    tail = head;
+
+    // 获取输入的整数数量
+    scanf("%d", &n);
+
+    // 循环读取每个整数并创建对应节点
+    for (i = 0; i < n; i++) {
+        p = (struct Node*)malloc(sizeof(struct Node)); // 创建新节点
+        scanf("%d", &(p->data));                       // 存储当前整数值到节点
+        p->next = NULL;                               // 设置下一个指针为空
+
+        // 将新节点连接到链表末尾
+        tail->next = p;
+        tail = p;
+    }
+
+    // 遍历链表并打印所有节点数据
+    for (p = head->next; p != NULL; p = p->next) {
+        if (p->next == NULL) {
+            printf("%d\n", p->data); // 如果是最后一个节点，则换行
+        } else {
+            printf("%d ", p->data); // 否则继续输出空格分隔
+        }
+    }
+
+    return 0;
+}
