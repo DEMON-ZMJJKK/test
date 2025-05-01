@@ -1,0 +1,27 @@
+#include <stdio.h>
+struct hotel {
+	int price;
+	int comfort;
+}num[5005];
+ 
+int main() {
+	int n, i, max = 0, pos = 0;
+	scanf("%d", &n);
+	for ( i = 0; i < n; i++) {
+		scanf("%d %d",&num[i].price, &num[i].comfort);
+	}
+	for ( i = 0; i < n; i++) {
+		if ( num[i].price == max ) {
+			if ( num[i].comfort > num[pos].comfort ) 
+				pos = i;
+		}
+		else {
+			if ( num[i].price > max ) {
+				max = num[i].price;
+				pos = i;
+			}
+		}
+	}
+	printf("%d\n", pos + 1);
+	return 0;
+}
