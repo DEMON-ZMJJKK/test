@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <stdlib.h>
+struct node
+{
+    int a;
+    struct node *next;
+};//定义结构体类型；
+void show(struct node *head)//链表输出函数；
+{
+    struct node *p;
+    p = head -> next;
+    while(p)
+    {
+        if(p -> next)
+        {
+            printf("%d ",p -> a);
+        }
+        else printf("%d\n",p -> a);
+        p = p -> next;
+    }
+}
+int main()
+{
+    struct node *head,*p;
+    int n,i;
+    int x;
+    while(~scanf("%d",&n))
+    {
+        head = (struct node*)malloc(sizeof(struct node));
+        //要多组输入，每一组输入都要重新开辟一个头结点；
+        head -> next = NULL;
+        for(i=0; i<n; i++)
+        {
+
+            p = (struct node*)malloc(sizeof(struct node));
+            p -> next = NULL;
+            scanf("%d%d",&x,&p -> a);
+            struct node *q = head -> next;
+            struct node *qi = head;//定义两个游动指针
+            while(q&&x--)//寻找插入的位置；
+            {
+                q = q -> next;
+                qi = qi -> next;
+            }
+            qi -> next = p;
+            p -> next = q;//插入节点；
+
+        }
+        show(head);//输出链表；
+    }
+
+    return 0;
+}
+
