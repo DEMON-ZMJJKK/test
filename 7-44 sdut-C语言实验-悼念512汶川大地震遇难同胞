@@ -1,0 +1,39 @@
+#include <stdio.h>
+struct
+{
+ int p,h;
+}a[1000],t;
+int main()
+{
+        int i,j,n,m;
+        double ans=0;
+        scanf("%d%d",&n,&m);
+        for(i=0;i<m;i++)
+        {
+            scanf("%d%d",&a[i].p,&a[i].h);
+        }
+        for(i=0;i<m;i++)
+        {
+            for(j=0;j<m-i-1;j++)
+            {
+                if(a[j].p>a[j+1].p)
+                {
+                    t=a[j];
+                    a[j]=a[j+1];
+                    a[j+1]=t;
+                }
+            }
+        }
+        for(i=0;i<m;i++)
+        {
+            if(a[i].h*a[i].p>n)
+            {
+                break;
+            }
+            ans+=a[i].h*1.0;
+            n-=a[i].h*a[i].p;
+        }
+        ans=ans+n*1.0/a[i].p;
+        printf("%.2f\n",ans);
+    return 0;
+}
