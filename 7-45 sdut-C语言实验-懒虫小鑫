@@ -1,0 +1,37 @@
+#include <stdio.h>
+struct
+{
+    int p,h;
+}a[10001],t;
+void sort(int l,int r)
+{
+    t=a[l];
+    int i=l,j=r;
+    if(l>=r) return;
+    while(i<j)
+    {
+        while((a[j].h>t.h||(a[j].h==t.h&&a[j].p<=t.p))&&i<j)j--;
+        a[i]=a[j];
+        while((a[i].h<t.h||(a[i].h==t.h&&a[i].p>=t.p))&&i<j)i++;
+        a[j]=a[i];
+    }
+    a[i]=t;
+    sort(l,i-1);
+    sort(i+1,r);
+}
+int main()
+{
+    int i,n,m,ans=0;
+    while(scanf("%d%d",&n,&m)!=EOF)
+    {
+        for(i=0;i<n;i++)
+        {
+            scanf("%d%d",&a[i].h,&a[i].p);
+        }
+        sort(0,n-1);
+        for(i=0;i<m;i++)
+        ans+=a[i].p;
+        printf("%d\n",ans);
+    }
+    return 0;
+}
