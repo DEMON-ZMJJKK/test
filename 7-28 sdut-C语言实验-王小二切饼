@@ -1,0 +1,19 @@
+#include<stdio.h>
+#include<stdlib.h>
+int f(int n)
+{
+    int i,a[101];
+    a[1]=2;
+    for(i=2;i<=n;i++)
+    {
+        a[i]=a[i-1]+i;
+    }
+    return a[n];
+}
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    printf("%d\n",f(n));
+    return 0;
+}
