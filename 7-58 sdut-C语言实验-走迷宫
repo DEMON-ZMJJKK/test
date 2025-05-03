@@ -1,0 +1,65 @@
+#include<stdio.h>
+#include<string.h>
+int p[20][20]={0},v[20][20]={0};
+int flag;
+int m,n,ex,ey,bx,by;
+int dx[4]={0,-1,0,1},dy[4]={-1,0,1,0};
+struct node
+{
+    int x,y;
+}r[250];
+void dfs(int dep,int x,int y)
+{
+    int i;
+    if(x==ex&&y==ey)
+    {
+        printf("(%d,%d)",bx,by);
+        for(i=1;i<dep;i++)
+        {
+            printf("->(%d,%d)",r[i].x,r[i].y);
+        }
+        printf("\n");
+        flag=1;
+    }
+    else
+    {
+        int tx,ty;
+        for(i=0;i<4;i++)
+        {
+            tx=x+dx[i];
+            ty=y+dy[i];
+            if(p[tx][ty]==1&&v[tx][ty]==0&&tx>=1&&tx<=m&&ty>=1&&ty<=n)
+            {
+                r[dep].x=tx;
+                r[dep].y=ty;
+                v[x][y]=1;
+                dfs(dep+1,tx,ty);
+                v[x][y]=0;
+            }
+        }
+    }
+}
+int main()
+{
+       int i,j;
+    while(scanf("%d%d",&m,&n)!=EOF)
+    {
+        flag=0;
+        for(i=1;i<=m;i++)
+        {
+            for(j=1;j<=n;j++)
+            {
+                scanf("%d",&p[i][j]);
+            }
+        }
+        scanf("%d%d",&bx,&by);
+        scanf("%d%d",&ex,&ey);
+        v[bx][by]=1;
+        dfs(1,bx,by);
+        if(flag==0)
+        {
+            printf("-1\n");
+        }
+    }
+    return 0;
+}
