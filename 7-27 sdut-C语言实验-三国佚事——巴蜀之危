@@ -1,0 +1,20 @@
+#include<stdio.h>
+long int f(int n)
+{
+    int i;
+    long int a[21];
+    a[1]=0;
+    a[2]=1;
+    for(i=3;i<=n;i++)
+    {
+        a[i]=(i-1)*(a[i-1]+a[i-2]);
+    }
+    return a[n];
+}
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    printf("%ld\n",f(n));
+    return 0;
+}
