@@ -1,0 +1,39 @@
+#include <stdio.h>
+struct node
+{
+    int begin,end;
+}a[101],t;
+int main()
+{
+    int i,j,n,now=0,ans=0;
+    while(scanf("%d",&n)!=EOF)
+    {
+        for(i=0;i<n;i++)
+        {
+            scanf("%d%d",&a[i].begin,&a[i].end);
+        }
+        for(i=0;i<n-1;i++)
+        {
+            for(j=0;j<n-i-1;j++)
+            {
+                if(a[j].end>a[j+1].end)
+                {
+                    t=a[j];
+                    a[j]=a[j+1];
+                    a[j+1]=t;
+                }
+            }
+        }
+        
+        for(i=0;i<n;i++)
+        {
+            if(a[i].begin>=now)
+            {
+                ans++;
+                now=a[i].end;
+            }
+        }
+        printf("%d\n",ans);
+    }
+    return 0;
+}
