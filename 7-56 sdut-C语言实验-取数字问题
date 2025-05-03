@@ -1,0 +1,27 @@
+#include<stdio.h>
+#include<stdlib.h>
+int M, N;
+int D[11][11];
+int ans=9999;
+void f(int i,int j,int sum)
+{
+    sum+=D[i][j];
+    if(i<M)f(i+1,j,sum);
+    if(j<N)f(i,j+1,sum);
+    if(i==M&&j==N&&sum>0&&sum<ans)ans=sum;
+}
+int main()
+{
+    int i,j;
+    scanf("%d%d",&M,&N);
+    for(i=1;i<=M; i++)
+    {
+        for(j=1;j<=N;j++)
+        {
+            scanf("%d",&D[i][j]);
+        }
+    }
+    f(1,1,0);
+    printf("%d\n",ans);
+    return 0;
+}
